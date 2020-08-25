@@ -123,6 +123,9 @@ class AllHeroesTableViewController: UITableViewController, AddSuperHeroDelegate,
     // MARK AddSuperHero Delegate
     
     func addSuperHero(newHero: SuperHero) -> Bool {
+        if allHeroes.contains(where: {$0.name == newHero.name}) { //Validate if the player already exists
+            return false
+        }
         allHeroes.append(newHero)
         filteredHeroes.append(newHero)
         tableView.beginUpdates()
