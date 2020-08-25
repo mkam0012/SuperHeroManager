@@ -9,5 +9,13 @@
 import UIKit
 
 class SuperHero: NSObject {
+    
+    var name: String
+    var abilities: String
+    
+    init(newName: String, newAbilities: String) {
+        name = newName
+        abilities = newAbilities
+    }
 
 }

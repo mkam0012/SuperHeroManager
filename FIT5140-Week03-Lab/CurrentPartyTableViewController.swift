@@ -8,83 +8,117 @@
 
 import UIKit
 
-class CurrentPartyTableViewController: UITableViewController {
+class CurrentPartyTableViewController: UITableViewController, AddSuperHeroDelegate {
+    
+    let SECTION_PARTY = 0
+    let SECTION_INFO = 1
+    let CELL_HERO = "heroCell"
+    let CELL_INFO = "partySizeCell"
+    
+    var currentParty:[SuperHero] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        switch section {
+        case SECTION_PARTY:
+            return currentParty.count
+        case SECTION_INFO:
+            return 1
+        default:
+            return 0
+        }
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
 
-        // Configure the cell...
+        if indexPath.section == SECTION_PARTY {
+            let partyCell = tableView.dequeueReusableCell(withIdentifier: CELL_HERO, for: indexPath) as! SuperHeroTableViewCell
+            let hero = currentParty[indexPath.row]
+            
+            partyCell.nameLabel.text = hero.name
+            partyCell.abilitiesLabel.text = hero.abilities
+            
+            return partyCell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_INFO, for: indexPath)
+        
+        cell.textLabel?.textColor = .secondaryLabel
+        cell.selectionStyle = .none
+        if currentParty.count > 0 {
+            cell.textLabel?.text = "\(currentParty.count)/6 heroes in Party"
+        } else {
+            cell.textLabel?.text = "No Heroes in party. Click + to add some"
+        }
 
         return cell
     }
-    */
+    
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        if indexPath.section == SECTION_PARTY {
+            return true
+        }
+        return false
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        
+        if editingStyle == .delete && indexPath.section == SECTION_PARTY {
+            tableView.performBatchUpdates({
+                //Delete the row from data source
+                self.currentParty.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadSections([SECTION_INFO], with: .automatic)
+            }, completion: nil)
         }    
     }
-    */
+    
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "allHeroesSegue" {
+            let destination = segue.destination as! AllHeroesTableViewController
+            destination.superHeroDelegate = self
+        }
     }
-    */
-
+    
+    // MARK: add super hero delegate
+    
+    func addSuperHero(newHero: SuperHero) -> Bool {
+        if currentParty.count >= 6 {
+            return false
+        }
+        
+        tableView.performBatchUpdates({
+            currentParty.append(newHero)
+            tableView.insertRows(at: [IndexPath(row: currentParty.count - 1, section: SECTION_PARTY)], with: .automatic)
+        }, completion: nil)
+        return true
+    }
 }

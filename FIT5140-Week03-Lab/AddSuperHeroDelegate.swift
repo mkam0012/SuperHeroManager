@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol AddSuperHeroDelegate: AnyObject {
+    func addSuperHero(newHero: SuperHero) -> Bool
+}

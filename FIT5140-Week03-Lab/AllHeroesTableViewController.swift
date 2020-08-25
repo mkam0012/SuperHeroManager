@@ -8,83 +8,145 @@
 
 import UIKit
 
-class AllHeroesTableViewController: UITableViewController {
+class AllHeroesTableViewController: UITableViewController, AddSuperHeroDelegate, UISearchResultsUpdating {
+    
+    let SECTION_HEROES = 0
+    let SECTION_INFO = 1
+    let CELL_HERO = "heroCell"
+    let CELL_INFO = "totalHeroesCell"
+    
+    var allHeroes: [SuperHero] = []
+    var filteredHeroes: [SuperHero] = []
+    
+    weak var superHeroDelegate: AddSuperHeroDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        createDefaultHeroes()
+        
+        filteredHeroes = allHeroes
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Heroes"
+        navigationItem.searchController = searchController
+        
+        //this view controller decides how the search controller is presented
+        definesPresentationContext = true
+    }
+    
+    // MARK: Search Controller Delegate
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text?.lowercased() else {
+            return
+        }
+        
+        if searchText.count > 0 {
+            filteredHeroes = allHeroes.filter({ (hero: SuperHero) -> Bool in return hero.name.lowercased().contains(searchText) })
+        } else {
+            filteredHeroes = allHeroes
+        }
+        
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        if section == SECTION_HEROES {
+            return filteredHeroes.count
+        }
+        return 1
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        
+        if indexPath.section == SECTION_HEROES {
+            let heroCell = tableView.dequeueReusableCell(withIdentifier: CELL_HERO, for: indexPath) as! SuperHeroTableViewCell
+            let hero = filteredHeroes[indexPath.row]
+            
+            heroCell.nameLabel.text = hero.name
+            heroCell.abilitiesLabel.text = hero.abilities
+            
+            return heroCell
+        }
+        
+        
         // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_INFO, for: indexPath)
+        cell.textLabel?.text = "\(filteredHeroes.count) heroes in the database"
+        cell.textLabel?.textColor = .secondaryLabel
+        cell.selectionStyle = .none
+        
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == SECTION_INFO {
+            tableView.deselectRow(at: indexPath, animated: false)
+            return
+        }
+        
+        if superHeroDelegate?.addSuperHero(newHero: filteredHeroes[indexPath.row]) ?? false {
+            navigationController?.popViewController(animated: false)
+            return
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        displayMessage(title: "Party Full", message: "Unable to add more members to party")
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "createHeroSegue" {
+            let destination = segue.destination as! CreateSuperHeroViewController
+            destination.superHeroDelegate = self
+        }
     }
-    */
-
+    
+    // MARK AddSuperHero Delegate
+    
+    func addSuperHero(newHero: SuperHero) -> Bool {
+        allHeroes.append(newHero)
+        filteredHeroes.append(newHero)
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: filteredHeroes.count - 1, section: 0)], with: .automatic)
+        tableView.endUpdates()
+        tableView.reloadSections([SECTION_INFO], with: .automatic)
+        return true
+    }
+    
+    // MARK Create Defaults
+    
+    func createDefaultHeroes() {
+        allHeroes.append(SuperHero(newName: "Bruce Wayne", newAbilities: "Money"))
+        allHeroes.append(SuperHero(newName: "Superman", newAbilities: "Super Powered Alien"))
+        allHeroes.append(SuperHero(newName: "Wonder Woman", newAbilities: "Goodness"))
+        allHeroes.append(SuperHero(newName: "The Flash", newAbilities: "Speed"))
+        allHeroes.append(SuperHero(newName: "Green Lantern", newAbilities: "Power Ring"))
+        allHeroes.append(SuperHero(newName: "Cyborg", newAbilities: "Robot Beep Beep"))
+        allHeroes.append(SuperHero(newName: "Aquaman", newAbilities: "Atlantian"))
+    }
+    
+    func displayMessage(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
 }

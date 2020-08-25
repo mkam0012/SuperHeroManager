@@ -9,21 +9,31 @@
 /* Begin PBXBuildFile section */
 		04B3F92F24EFBB810017D771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3F92E24EFBB810017D771 /* AppDelegate.swift */; };
 		04B3F93124EFBB810017D771 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3F93024EFBB810017D771 /* SceneDelegate.swift */; };
-		04B3F93324EFBB810017D771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3F93224EFBB810017D771 /* ViewController.swift */; };
 		04B3F93624EFBB810017D771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B3F93424EFBB810017D771 /* Main.storyboard */; };
 		04B3F93824EFBB820017D771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B3F93724EFBB820017D771 /* Assets.xcassets */; };
 		04B3F93B24EFBB820017D771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B3F93924EFBB820017D771 /* LaunchScreen.storyboard */; };
+		04B3F94324EFBC190017D771 /* SuperHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3F94224EFBC190017D771 /* SuperHero.swift */; };
+		04B3F94524EFBC4C0017D771 /* CurrentPartyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3F94424EFBC4C0017D771 /* CurrentPartyTableViewController.swift */; };
+		04B3F94724EFBC730017D771 /* AllHeroesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3F94624EFBC730017D771 /* AllHeroesTableViewController.swift */; };
+		04B3F94924EFBC970017D771 /* CreateSuperHeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3F94824EFBC970017D771 /* CreateSuperHeroViewController.swift */; };
+		04B3F94B24EFBCC60017D771 /* SuperHeroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3F94A24EFBCC60017D771 /* SuperHeroTableViewCell.swift */; };
+		04B3F94D24EFBD1A0017D771 /* AddSuperHeroDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B3F94C24EFBD1A0017D771 /* AddSuperHeroDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04B3F92B24EFBB810017D771 /* FIT5140-Week03-Lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FIT5140-Week03-Lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B3F92E24EFBB810017D771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04B3F93024EFBB810017D771 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		04B3F93224EFBB810017D771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04B3F93524EFBB810017D771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04B3F93724EFBB820017D771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04B3F93A24EFBB820017D771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04B3F93C24EFBB820017D771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04B3F94224EFBC190017D771 /* SuperHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHero.swift; sourceTree = "<group>"; };
+		04B3F94424EFBC4C0017D771 /* CurrentPartyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPartyTableViewController.swift; sourceTree = "<group>"; };
+		04B3F94624EFBC730017D771 /* AllHeroesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllHeroesTableViewController.swift; sourceTree = "<group>"; };
+		04B3F94824EFBC970017D771 /* CreateSuperHeroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSuperHeroViewController.swift; sourceTree = "<group>"; };
+		04B3F94A24EFBCC60017D771 /* SuperHeroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperHeroTableViewCell.swift; sourceTree = "<group>"; };
+		04B3F94C24EFBD1A0017D771 /* AddSuperHeroDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSuperHeroDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +68,16 @@
 			children = (
 				04B3F92E24EFBB810017D771 /* AppDelegate.swift */,
 				04B3F93024EFBB810017D771 /* SceneDelegate.swift */,
-				04B3F93224EFBB810017D771 /* ViewController.swift */,
 				04B3F93424EFBB810017D771 /* Main.storyboard */,
 				04B3F93724EFBB820017D771 /* Assets.xcassets */,
 				04B3F93924EFBB820017D771 /* LaunchScreen.storyboard */,
 				04B3F93C24EFBB820017D771 /* Info.plist */,
+				04B3F94224EFBC190017D771 /* SuperHero.swift */,
+				04B3F94424EFBC4C0017D771 /* CurrentPartyTableViewController.swift */,
+				04B3F94624EFBC730017D771 /* AllHeroesTableViewController.swift */,
+				04B3F94824EFBC970017D771 /* CreateSuperHeroViewController.swift */,
+				04B3F94A24EFBCC60017D771 /* SuperHeroTableViewCell.swift */,
+				04B3F94C24EFBD1A0017D771 /* AddSuperHeroDelegate.swift */,
 			);
 			path = "FIT5140-Week03-Lab";
 			sourceTree = "<group>";
@@ -138,9 +153,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04B3F93324EFBB810017D771 /* ViewController.swift in Sources */,
 				04B3F92F24EFBB810017D771 /* AppDelegate.swift in Sources */,
 				04B3F93124EFBB810017D771 /* SceneDelegate.swift in Sources */,
+				04B3F94524EFBC4C0017D771 /* CurrentPartyTableViewController.swift in Sources */,
+				04B3F94724EFBC730017D771 /* AllHeroesTableViewController.swift in Sources */,
+				04B3F94924EFBC970017D771 /* CreateSuperHeroViewController.swift in Sources */,
+				04B3F94324EFBC190017D771 /* SuperHero.swift in Sources */,
+				04B3F94D24EFBD1A0017D771 /* AddSuperHeroDelegate.swift in Sources */,
+				04B3F94B24EFBCC60017D771 /* SuperHeroTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
