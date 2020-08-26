@@ -12,13 +12,14 @@ class CreateSuperHeroViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var abilitiesTextField: UITextField!
+    @IBOutlet weak var createHeroButton: UIButton!
     
     weak var superHeroDelegate: AddSuperHeroDelegate?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        createHeroButton.layer.cornerRadius = 15
     }
     
     @IBAction func createHero(_ sender: Any) {

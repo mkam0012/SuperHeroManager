@@ -94,10 +94,10 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="heroCell" id="aOK-ey-xc9" customClass="SuperHeroTableViewCell" customModule="FIT5140_Week03_Lab" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99" width="414" height="45"/>
+                                <rect key="frame" x="0.0" y="99" width="414" height="44.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aOK-ey-xc9" id="9x4-MK-qRd">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4LV-vf-bGm">
@@ -110,7 +110,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abilities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM5-MT-b4F">
-                                            <rect key="frame" x="5" y="23.5" width="404" height="21.5"/>
+                                            <rect key="frame" x="5" y="23.5" width="404" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -220,6 +220,7 @@
                     <navigationItem key="navigationItem" title="Create New Hero" id="Nsd-lR-AAf"/>
                     <connections>
                         <outlet property="abilitiesTextField" destination="0n1-Xf-O87" id="ZJR-vA-0lR"/>
+                        <outlet property="createHeroButton" destination="6Ac-tS-nbJ" id="DDo-7g-uTG"/>
                         <outlet property="nameTextField" destination="zK2-t2-6nD" id="CF1-cc-7Gn"/>
                     </connections>
                 </viewController>
