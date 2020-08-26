@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateSuperHeroViewController: UIViewController {
+class CreateSuperHeroViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var abilitiesTextField: UITextField!
@@ -44,6 +44,12 @@ class CreateSuperHeroViewController: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    // MARK: Hide keyboard after hitting return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
 }

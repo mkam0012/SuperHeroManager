@@ -133,6 +133,11 @@ class AllHeroesTableViewController: UITableViewController, AddSuperHeroDelegate,
         tableView.insertRows(at: [IndexPath(row: filteredHeroes.count - 1, section: 0)], with: .automatic)
         tableView.endUpdates()
         tableView.reloadSections([SECTION_INFO], with: .automatic)
+        
+        if allHeroes.contains(where: {$0.name == newHero.name}) { //Validate if the player has been added
+            displayMessage(title: "Congratulations", message: "Player \(newHero.name) is a part of the gang now!")
+        }
+        
         return true
     }
     
