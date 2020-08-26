@@ -124,6 +124,7 @@ class AllHeroesTableViewController: UITableViewController, AddSuperHeroDelegate,
     
     func addSuperHero(newHero: SuperHero) -> Bool {
         if allHeroes.contains(where: {$0.name == newHero.name}) { //Validate if the player already exists
+            displayMessage(title: "Duplicate Name", message: "Player with this name already exists")
             return false
         }
         allHeroes.append(newHero)
